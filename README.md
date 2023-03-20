@@ -1,2 +1,2 @@
-# CartStoreApp
+# TheMarche
 Cart Store - React Native. 
