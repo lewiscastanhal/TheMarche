@@ -1,2 +1,2 @@
 # TheMarche
-Cart Store - React Native. 
+Cart Store
