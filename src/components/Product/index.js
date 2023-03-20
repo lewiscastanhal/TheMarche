@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function Product({ data }) {
+export default function Product({  }) {
     return (
         <View style={styles.container}>
          <View>
-            <Text> ({data.name}) </Text>
+         <Text style={styles.title}>{data.name}</Text>
         </View>
         </View>
     );
