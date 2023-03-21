@@ -4,9 +4,10 @@ import { View, Text, StyleSheet, SafeAreaView, FlatList, TouchableOpacity} from 
 import { Feather } from '@expo/vector-icons'
 import Product from '../../components/Product'
 import { useNavigation } from '@react-navigation/native'
+import { CartContext } from '../Cart'
 
 export default function Home(){
-  const {  } = useContext()
+  const { cart } = useContext(CartContext)
 
   const navigation = useNavigation();
   const [products, setProducts] = useState([
