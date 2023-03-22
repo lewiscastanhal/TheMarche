@@ -3,42 +3,47 @@ import { View, Text, StyleSheet, SafeAreaView, FlatList, TouchableOpacity } from
 
 import { Feather } from '@expo/vector-icons'
 import Product from '../../components/Product'
+import { useNavigation } from '@react-navigation/native'
 
 export default function Home(){
+
+    const navigation = useNavigation();
     const [products, setProducts] = useState([
         {
             id: '1',
-            name: "Coca cola",
-            price: 19.90
+            name: "Tomatoes",
+            price: 1.90
           },
           {
             id: '2',
-            name: "Chocolate",
-            price: 6.50
+            name: "Water",
+            price: 0.50
           },
           {
             id: '4',
-            name: "Queijo 500g",
-            price: 15
+            name: "Apples",
+            price: 1.10
           },
           {
             id: '5',
-            name: "Batata frita",
-            price: 23.90
+            name: "Oranges",
+            price: 0.40
           },
           {
             id: '6',
-            name: "Guarana lata",
-            price: 6.00
+            name: "Toilet Paper",
+            price: 2.050
           },
-    ])
+    ]);
 
     return(
         <SafeAreaView  style={styles.container}>
         <View style={styles.cartContent}>
             <Text style={styles.title}> Product List </Text>
 
-            <TouchableOpacity style={styles.cartButton}>
+            <TouchableOpacity style={styles.cartButton} 
+            onPress={ () => navigation.navigate("Cart")}
+            >
                 <View style={styles.dot}>
                 <Text style={styles.dotText}>5</Text>
                 </View>
@@ -50,7 +55,7 @@ export default function Home(){
          style={styles.list}
          data={products}
          keyExtractor={(item) => String(item.id)}
-         renderItem={({item}) => <Product/>}
+         renderItem={({item}) => <Product data={item} />}
         />
 
         </SafeAreaView>
