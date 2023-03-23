@@ -19,7 +19,7 @@ export default function Routes(){
             name="Cart"
             component={Cart}
             options={{
-                headerTitle: 'Meu Carrinho',
+                headerTitle: 'My Cart',
             }}
             />
         </Stack.Navigator>
