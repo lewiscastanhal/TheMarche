@@ -5,32 +5,32 @@ export default function CardItem({ data, addAmount }) {
    const [amount, setAmount] = useState(data?.amount)
 
    function handleIncrease(){
-      addAmount();
+     addAmount();
      setAmount(item => item + 1)
    }
+ 
+return (
+   <View style={styles.container}>
+    <View>
+      <Text style={styles.title}>{data.name}</Text>
+      <Text style={styles.price}>€ {data.price}</Text>
+    </View>
 
-   return (
-      <View style={styles.container}>
-      <View>
-        <Text style={styles.title}>{data.name}</Text>
-         <Text style={styles.price}>€ {data.price}</Text>
-         </View>
+    <View style={styles.amountContainer}>
+      <TouchableOpacity style={styles.buttonAdd}>
+         <Text>-</Text>
+      </TouchableOpacity>
 
-      <View style={styles.amountContainer}>
-         <TouchableOpacity style={styles.buttonAdd}>
-            <Text>-</Text>
-         </TouchableOpacity>
+      <Text style={styles.amount}>{amount}</Text>
 
-         <Text style={styles.amount}>{amount}</Text>
+      <TouchableOpacity style={styles.buttonAdd} onPress={handleIncrease}>
+        <Text>+</Text>
+       </TouchableOpacity>
+   </View>
 
-         <TouchableOpacity style={styles.buttonAdd} onPress={handleIncrease}>
-            <Text>+</Text>
-         </TouchableOpacity>
-      </View>
+  </View>
 
-      </View>
-
-   );
+ );
 }
 
 const styles = StyleSheet.create({
