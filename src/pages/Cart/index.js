@@ -4,7 +4,7 @@ import { CartContext } from '../../contexts/CartContext'
 import CardItem from '../../components/CardItem'
 
 export default function Cart(){
-    const { cart, addItemCart, removeItemCart } = useContext(CartContext);
+    const { cart, addItemCart, removeItemCart, checkout  } = useContext(CartContext);
 
 
     return (
@@ -21,6 +21,7 @@ export default function Cart(){
                     removeAmount={ () => removeItemCart(item) }
                     />
                 )}
+                ListFooterComponent={ () => <Text style={styles.checkout}> Checkout: € {checkout}</Text>}
             />
         </View>
     )
@@ -33,5 +34,10 @@ const styles = StyleSheet.create({
      paddingStart: 14,
      paddingEnd: 14,
      paddingTop: 14,
+},
+checkout:{
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 24,
 }
 })

@@ -4,6 +4,7 @@ export const CartContext = createContext({});
 
 function CartProvider({ children }) {
     const [cart, setCart] = useState([]);
+    const [checkout, setCheckout] = useState(0)
 
     function addItemCart(newItem) {
         const indexItem = cart.findIndex(item => item.id === newItem.id)
@@ -14,19 +15,22 @@ function CartProvider({ children }) {
 
             cartList[indexItem].amount = cartList[indexItem].amount + 1;
 
-            cartList[indexItem].total = cartList[indexItem].amount * cartList[indexItem].price;
+            cartList[indexItem].checkout = cartList[indexItem].amount * cartList[indexItem].price;
             
             setCart(cartList)
+            checkoutResultCart(cartList);
+
             return;
-        } 
+        }
 
         let data = {
             ...newItem,
             amount: 1,
-            total: newItem.price
+            checkout: newItem.price  
         }
 
         setCart(products => [...products, data])
+        checkoutResultCart([...cart, data])
         
     }
 
@@ -38,14 +42,25 @@ function CartProvider({ children }) {
 
             cartList[indexItem].amount = cartList[indexItem].amount - 1;
 
-            cartList[indexItem].total = cartList[indexItem].total - cartList[indexItem].price;
+            cartList[indexItem].checkout = cartList[indexItem].checkout  - cartList[indexItem].price;
 
             setCart(cartList);
+            checkoutResultCart(cartList)
+            
             return;
         }
 
         const removeItem = cart.filter(item => item.id !== product.id);
         setCart(removeItem);
+        checkoutResultCart(removeItem)
+    
+    }
+
+    function checkoutResultCart(items){
+        let myCart = items;
+        let result = myCart.reduce((acc, obj) => { return acc + obj.checkout }, 0)
+
+        setCheckout(result);
     }
 
     return (
@@ -54,6 +69,7 @@ function CartProvider({ children }) {
                 cart,
                 addItemCart,
                 removeItemCart,
+                checkout,
             }}
         >
             {children}
