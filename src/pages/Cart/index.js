@@ -1,10 +1,10 @@
 import { useContext } from 'react'
-import { View, StyleSheet, FlatList } from 'react-native'
+import { View, StyleSheet, FlatList, Text } from 'react-native'
 import { CartContext } from '../../contexts/CartContext'
 import CardItem from '../../components/CardItem'
 
 export default function Cart(){
-    const { cart, addItemCart } = useContext(CartContext);
+    const { cart, addItemCart, removeItemCart } = useContext(CartContext);
 
 
     return (
@@ -13,17 +13,18 @@ export default function Cart(){
                 data={cart}
                 showsVerticalScrollIndicator={false}
                 keyExtractor={ (item) => String(item.id) }
+                ListEmptyComponent={ () => <Text> Cart Empty! </Text>}
                 renderItem={({ item }) => (
                     <CardItem
                     data={item}
-                    addAmount={() => addItemCart(item)}
+                    addAmount={() => addItemCart(item) }
+                    removeAmount={ () => removeItemCart(item) }
                     />
                 )}
             />
         </View>
     )
 }
-
 
 const styles = StyleSheet.create({
  container:{
