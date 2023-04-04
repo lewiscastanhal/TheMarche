@@ -4,3 +4,8 @@ module.exports = function(api) {
     presets: ['babel-preset-expo'],
   };
 };
+
+  // babel.config.js
+  module.exports = {
+   plugins: ["nativewind/babel"],
+  };
