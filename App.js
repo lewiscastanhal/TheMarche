@@ -1,28 +1,27 @@
-import './styles/global.css';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-export function App(){
+import './src/styles/global.css';
+
+import Login from './src/pages/Login/index';
+import Home from './src/pages/Home/index';
+import Sale from './src/pages/Sale/index';
+import Cart from './src/pages/Cart/index';
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <h1>HIIIIIII</h1>
-  )
-}
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Sale" component={Sale} />
+          <Stack.Screen name="Cart" component={Cart} />
+        </Stack.Navigator>
+      </NavigationContainer>
+  );
+};
 
-
-
-
-
-// import { StatusBar } from 'react-native';
-// import { NavigationContainer } from '@react-navigation/native'
-
-// import Routes from './src/routes/index'
-// import CartProvider from './src/contexts/CartContext'
-
-// export default function App() {
-//   return (
-//     <NavigationContainer>
-//         <CartProvider>
-//           <StatusBar backgroundColor="#FAFAFA" barStyle="dark-content" />
-//           <Routes/>
-//       </CartProvider>
-//     </NavigationContainer>
-//   );
-// }
+export default App;
